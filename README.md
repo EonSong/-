@@ -1,6 +1,6 @@
 각 부분별 제가 정확히 이해하지 못한 용어들 정리자료 입니다.
-
-# Spring Framework
+## 22.6.20 
+# Spring Framework 
 
 ### 프레임워크
 프로그래밍에서 특정 운영 체제를 위한 응용 프로그램 표준 구조를 구현하는 클래스와 라이브러리 모임.
@@ -60,11 +60,12 @@ web서버는 html 문서같은 정척컨텐츠를 처리 was 서버는 asp, php,
 # Spring Boot
 (xml 파일 설정대신 @만 적절하게 명시해주면 자동으로 적용 톰캣서버도 내장됨)
 
-메인클래스에 붙어있는 @SpringBootApplication은
--@SpringBootConfiguration
--@ComponentScan – 
--(컴포넌트 어노테이션을 가진 Bean 스캔 후 등록(Repository, @Service, @Controller, @RestController 포함)  
--@EnableAutoConfiguration – Bean을 등록하는 설정파일
+메인클래스에 붙어있는 <b>@SpringBootApplication</b>은
+- @SpringBootConfiguration
+- @ComponentScan
+- 컴포넌트 어노테이션을 가진 Bean 스캔 후 등록(Repository, @Service, @Controller, @RestController 포함)  
+- @EnableAutoConfiguration 
+- Bean을 등록하는 설정파일
 위에 것들이 합쳐진 거라고 생각하면 됨
 
 스프링 프레임워크를 기반으로 바로 실행가능한 애플리케이션을 쉽게 만들도록 도와주는 프레임워크
@@ -213,24 +214,24 @@ DB서버마다 독립적인 스토리지 할당
 -NVL(열명, ‘대체값’) / IFNULL(열밍, ‘대체값’)
 ##### SELECT 결과 개수 제한(페이징처리)
 -ROWNUM <= 숫자 / LIMIT 시작위치, 가져올 데이터 건수
-가상테이블 DUAL * 함수에 대한 쓰임을 알고 싶을때 특정 테이블을 생성할 필요없이 dual 테이블 사용
+##### 가상테이블 DUAL * 함수에 대한 쓰임을 알고 싶을때 특정 테이블을 생성할 필요없이 dual 테이블 사용
 -SELECT 1 FROM　DUAL; / SELECT 1;
-현재날짜
+##### 현재날짜
 -SELEC SYSDATE FROM DUAL; / SELECT NOW();
-조건식
+##### 조건식
 -SELECT DECODE(칼럼, 값, TRUE일 때, FALSE일 때) FROM TABLE; 
 / SELECT IFNULL(조건식, TRUE일 때, FALSE일 때) FROM TABLE;
-날짜형식
+##### 날짜형식
 SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') FROM DUAL;
 /SELECT DATE_FORMAT(NOW(), '%Y-%m-%d');
-시퀀스
+##### 시퀀스
 시퀸스 사용법도 다르니 사용할 때 찾아보고 쓰자
 MYSQL은 INSERT 시 값이 자동 생성되어 들어감
-문자열 자르기
+##### 문자열 자르기
 SELECT SUBSTR( 문자열/칼럼, 시작위치, 잘라낼 문자열의 길이) FROM DUAL;
 /SELECT SUBSTRING(문자열/칼럼, 시작위치, 잘라낼 문자열의 길이);
 
-AWS
+
 
 
 
