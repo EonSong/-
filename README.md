@@ -42,7 +42,7 @@ DI 는 스프링에서 IoC 구조를 만드는 방식
 서로의 영향을 최소화해 개발 및 수정이 쉽게 제작 가능한 디자인패턴.
 (화면과 데이터처리를 분리)
 
-# 1,2차이쓰기
+# mvc2차이공부하기
 
 ### Servlet
 클라이언트의 요처을 처리하고 그결과를 반환하는 Servlet 클래스의 구현 규칙을 지킨 자바 웹프로그래밍 기술임
@@ -61,10 +61,10 @@ web서버는 html 문서같은 정척컨텐츠를 처리 was 서버는 asp, php,
 (xml 파일 설정대신 @만 적절하게 명시해주면 자동으로 적용 톰캣서버도 내장됨)
 
 메인클래스에 붙어있는 @SpringBootApplication은
-@SpringBootConfiguration
-@ComponentScan – 
-(컴포넌트 어노테이션을 가진 Bean 스캔 후 등록(Repository, @Service, @Controller, @RestController 포함)  
-(@EnableAutoConfiguration – Bean을 등록하는 설정파일)
+-@SpringBootConfiguration
+-@ComponentScan – 
+-(컴포넌트 어노테이션을 가진 Bean 스캔 후 등록(Repository, @Service, @Controller, @RestController 포함)  
+-@EnableAutoConfiguration – Bean을 등록하는 설정파일
 위에 것들이 합쳐진 거라고 생각하면 됨
 
 스프링 프레임워크를 기반으로 바로 실행가능한 애플리케이션을 쉽게 만들도록 도와주는 프레임워크
@@ -116,22 +116,22 @@ pom.xml 기능
 기본적으로 한 개의 thread를 사용하고 동기형식으로 진행됨. 비동기형식으로 진행하고 싶으면
 @EnableAsync 찾아보기
 
-@Scheduled 옵션
+### @Scheduled 옵션
 -fixedDelay 이전작업이 종료된 후 설정 시간만큼 기다린 후 시작
 -fixedRate 이전작업이 종료되지 않아도 설정된 시간마다 시작한다.
 -initialDelay 작업 시작 시, 설정된 시간만큼 기다린 후 시작
 -cron 원하는 시간대를 설정하여 작업 실행 (cron=“초 분 시간 일 월 요일”)
 -zone 시간대를 설정한다. 미설정시 로컬 시간대 적용(cron이랑 사용)
 
-Spring Quartz
+# Spring Quartz
 스케줄러에 Clustering 기능이나 스케줄러 실패(에러 혹은 사용할 thread가 없는 경우)시 후처리 기능 추가가능
 
-Lombok
+# Lombok
 getter setter toString 등 중복되는 메서드들의 코드를 줄여주는 라이브러리로
 어노테이션을 추가하는 방식으로 작성하고 컴파일 과정에서 이를 생성해주는 방식으로 동작함
 가독성 및 유지보수성을 향상시킬 수 있다.
 
-주의
+### 주의
 api설명과 내부동작을 어느정도 숙지해야함 예시로 @Data 어노테이션이나 @ToString 어노테이션으로
 자동 생성된 ToString()메서드는 순환 참조 또는 무한 재귀 호출 문제로 StackOverflowError가 발생가능
 롬복내에서 해결할 수 있는 속성은 있음
@@ -140,79 +140,78 @@ api설명과 내부동작을 어느정도 숙지해야함 예시로 @Data 어노
 서로 순환되어 참고하는 경우
 -무한 재귀 호출 : 자기자신을 호출하는 함수가 무한히 반복되는 것
 
-어노테이션 종류
+### 어노테이션 종류
 클래스 이름위에 적용하면 모든변수에 적용, 변수위에 적용하면 해당변수만 적용
-@Getter 
-@Setter
-@ToString – 출력을 원하지 않는 변수에 @ToString.Exclude 추가로 제외가능
-@AllArgsConstructor – 모든 변수를 사용하는 생성자 만들기
-@NoArgsConstructor – 변수를 사용하지 않는 생성자 만들기
-@RequiredArgsConstructor – 특정변수만 활용하는 생성자. 활용할 변수위에 @NonNull 추가 혹은 final 선언
-@EqualsAndHashCode – equals 함수와 hashCode 함수 생성 특정변수가 같다면 동일객체로 인식설정 가능
-@Data – 아래 다섯가지 포함
- -@ToString
- -@EqualsAndHashCode
- -@Getter
- -@Setter
- -@RequiredArgsConstructor
- 실무에서는 무겁고 객체의 안정성을 지키기 위해 잘 활용하지는 않음
-@Builder – 클래스의 객체 생성에 builder 패턴을 적용해 준다. 특정 변수만 build 하기 원한다면 생성자를 작성하고 그위에 붙여주면 된다.
-@Delegate – 한 객체의 메소드를 다른 객체로 위임시켜 준다.
-@Log4j2 – 해당 클래스의 로그 클래스를 자동완성
+* @Getter 
+* @Setter
+* @ToString – 출력을 원하지 않는 변수에 @ToString.Exclude 추가로 제외가능
+* @AllArgsConstructor – 모든 변수를 사용하는 생성자 만들기
+* @NoArgsConstructor – 변수를 사용하지 않는 생성자 만들기
+* @RequiredArgsConstructor – 특정변수만 활용하는 생성자. 활용할 변수위에 @NonNull 추가 혹은 final 선언
+* @EqualsAndHashCode – equals 함수와 hashCode 함수 생성 특정변수가 같다면 동일객체로 인식설정 가능
+* @Data – 아래 다섯가지 포함(실무에서는 무겁고 객체의 안정성을 지키기 위해 잘 활용하지는 않음)
+ * @ToString
+ * @EqualsAndHashCode
+ * @Getter
+ * @Setter
+ * @RequiredArgsConstructor
+* @Builder – 클래스의 객체 생성에 builder 패턴을 적용해 준다. 특정 변수만 build 하기 원한다면 생성자를 작성하고 그위에 붙여주면 된다.
+* @Delegate – 한 객체의 메소드를 다른 객체로 위임시켜 준다.
+* @Log4j2 – 해당 클래스의 로그 클래스를 자동완성
 
-사용 
-롬복 자르 파일을 cmd에서 실행후 설치
+### 사용 
+롬복 jar 파일을 cmd에서 실행후 설치
 maven 프로젝트의 경우 pom.xml에 아래 의존성 추가 후 메이븐 업데이트 프로젝트
 (pom.xml 안열리면 open with 다른걸로)
 
+```sql
 <dependency>
 	<groupId>org.projectlombok</groupId>
 	<artifactId>lombok</artifactId>
 	<optional>true</optional>
 </dependency>
-
-Gson
+```
+# Gson
 GSON은 구글에서 만든 자바 오브젝트 직렬화/역직렬화 라이브러리다.
 자바객체를 JSON으로 JSON을 자바객체로 변환할 때 사용
 디펜던시에 추가해서 사용
 
-직렬화
+### 직렬화
 객체를 전송 가능한 형태로 만드는 것을 의미함. 객체의 데이터를 연속적인 데이터로 변형함
 Serializable 인터페이스를 implements해서 사용
 
-Oracle과 MySql 차이점
-Oracle
+# Oracle과 MySql 차이점
+### Oracle
 DB서버가 통합된 하나의 스토리지 공유
 중첩 루프 조인, 해시 조인, 소트 머지 조인
 별도 DBMS 사용불가
 수백메가바이트 설치
 
-MySql
+### MySql
 DB서버마다 독립적인 스토리지 할당
 중첩 루프 조인
 별도DBMS 사용가능
 1메가바이트 환경에도 설치가능
 
-스토리지
+### 스토리지
 컴퓨터가 접근할 수 있는 데이터를 저장하기 위한 별도의 장소 또는 장치
 
-중첩 루프 조인
+### 중첩 루프 조인
 한 집합의 원소 값을 다른 집합의 원소값과 매칭해 나가는 방법
 (가능한 모든 경우를 조회)
 
-소트 머지 조인
+### 소트 머지 조인
 한집합과 다른 집합을 합하기 위해서 양쪽 다 정렬이 되어 있어야만 비교가능.
 소트 머지의 경우 대등하게 합병되기 때문에 선행 또는 후행 테이블이 존제하지 않음
 
-해시 조인
+### 해시 조인
 해시를 사용하는 경우는 해당 조인 키가 정렬되어있지 않고, 인덱스도 존제하지 않으면서
 비교할 대상은 많을 때 사용
 
-문법차이(오라클 / mysql)
-------------------------------------------------------------------------------------
-NULL 대체
+### 문법차이(오라클 / mysql)
+##### NULL 대체
 -NVL(열명, ‘대체값’) / IFNULL(열밍, ‘대체값’)
-SELECT 결과 개수 제한(페이징처리)
+##### SELECT 결과 개수 제한(페이징처리)
 -ROWNUM <= 숫자 / LIMIT 시작위치, 가져올 데이터 건수
 가상테이블 DUAL * 함수에 대한 쓰임을 알고 싶을때 특정 테이블을 생성할 필요없이 dual 테이블 사용
 -SELECT 1 FROM　DUAL; / SELECT 1;
@@ -230,7 +229,6 @@ MYSQL은 INSERT 시 값이 자동 생성되어 들어감
 문자열 자르기
 SELECT SUBSTR( 문자열/칼럼, 시작위치, 잘라낼 문자열의 길이) FROM DUAL;
 /SELECT SUBSTRING(문자열/칼럼, 시작위치, 잘라낼 문자열의 길이);
-------------------------------------------------------------------------------------
 
 AWS
 
